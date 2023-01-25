@@ -7,6 +7,11 @@ export default defineNuxtConfig({
     build: {
         transpile: ['vuetify'],
     },
+
+    // modules: [
+    //     '@nuxtjs/composition-api/module'
+    //   ],
+
     vite: {
         define: {
             'process.env.DEBUG': false,

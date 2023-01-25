@@ -1,27 +1,43 @@
 <template>
   <div>Index</div>
+  <v-btn @click="closeSocket"> Close </v-btn>
+  <div class="">{{socketData.data}}</div>
 </template>
 
-<script setup lang="ts">
-// setup() {
+<script lang="ts">
+import { defineComponent, onMounted } from "vue";
 
-//     console.log($socket);
+export default defineComponent({
+  setup() {
+    const {$socket} = useNuxtApp();
+    const socketData = reactive({data: ''})
 
-//     return {};
-//   },
-const { $socket } = useNuxtApp();
-onMounted(() => {
-  $socket.onopen = () => {
-    console.log("connection opened");
-  };
+    const closeSocket = () => {
+        $socket.close()
+    }
+    
+    onMounted(() => {
+      $socket.onopen = () => {
+        console.log("connection opened");
+      };
 
-  $socket.onmessage = ({ data }: any) => {
-    console.log("data: ", data);
-  };
+      $socket.onmessage = ({ data }: any) => {
+        socketData.data = data
+        console.log('Got the message')
+      };
 
-  $socket.onclose = () => {
-    console.log("disconnected");
-  };
+      $socket.onclose = () => {
+        console.log("disconnected");
+      };
+
+      console.log($socket);
+    });
+
+    return {
+      socketData,
+      closeSocket,
+    };
+  },
 });
 </script>
 
