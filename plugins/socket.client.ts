@@ -1,7 +1,6 @@
 export default defineNuxtPlugin(() => {
-    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    let socket = new WebSocket(`${wsProtocol}//demo.piesocket.com/v3/channel_123?api_key=VCXCEuvhGcBDP7XhiJJUDvR1e1D3eiVjgZ9VRiaV&notify_self`)
-
+    let socket = new WebSocket(`wss://stream.binance.com:9443/ws/bnbbtc@depth`)
+    
     return {
         provide: {
             socket,
