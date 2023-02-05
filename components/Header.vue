@@ -11,9 +11,6 @@
         router
         exact
       >
-        <!-- <v-list-item-icon>
-          <v-icon v-text="item.icon"></v-icon>
-        </v-list-item-icon> -->
         <template v-slot:prepend>
           <v-icon :icon="item.icon"></v-icon>
         </template> 
@@ -29,13 +26,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  data() {
-    return {
-      drawer: false,
-      clipped: false,
-    };
-  },
-
   setup() {
     return {
       items: [
@@ -50,6 +40,12 @@ export default defineComponent({
           to: "/currency",
         },
       ],
+    };
+  },
+
+  data() {
+    return {
+      drawer: false,
     };
   },
 });
